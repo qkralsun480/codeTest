@@ -26,3 +26,26 @@ if max(result) == 0:
 else:
     print(max(result))
     print(result.count(max(result)))
+    
+# 시간초과 
+# import sys
+# input = sys.stdin.readline
+
+# n,x = map(int, input().split())
+# data = list(map(int, input().split()))
+
+# sum_data = []
+# period_list = []
+# for i in range(0,len(data)-x+1):  
+#     sum_d =0
+#     for j in range(i,i+x):
+#         sum_d += data[j]
+#     sum_data.append(sum_d)
+
+# answer_value = max(sum_data)
+# answer_count = sum_data.count(answer_value)
+# if answer_value == 0:
+#     print('SAD')
+# else:
+#     print(answer_value)
+#     print(answer_count)
