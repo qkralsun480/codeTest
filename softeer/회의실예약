@@ -1,0 +1,47 @@
+#회의실예약
+import sys
+import collections
+N, M = map(int,input().split())
+room_list = []
+temp_a = []
+room_time_list = collections.defaultdict()
+for i in range(N):
+    room_item = input()
+    #room_list.append(room_item)
+    room_time_list[room_item] = []
+for i in range(M):
+    a,b,k = map(str,input().split())
+    #if room_time_list.get(a) == None:
+    #    room_time_list[a] = [[int(b),int(k)]]
+    #else:
+    room_time_list[a].append([int(b),int(k)])
+
+def checkvalid(times):
+    avail_list = []
+    check = 9
+    for time in times:
+        start, end = time[0],time[1]
+        if check < start:
+            avail_list.append([check,start])
+        check = end
+
+    if check !=18:
+        avail_list.append([check,18])         
+    
+    length = len(avail_list)
+    if length == 0:
+        print("Not available")
+    else:
+        print(length, "available:")
+        for start, end in avail_list:
+            if(start == 9): start = "09"
+            print(str(start)+"-"+str(end))
+
+for room, times in sorted(room_time_list.items()):
+    times.sort(key=lambda x:x[0])
+    print("Room "+room+":")
+    checkvalid(times)
+    N -=1
+    if(N !=0):        
+        print("-----")
+    
