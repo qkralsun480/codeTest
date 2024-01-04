@@ -2,7 +2,7 @@
 
 from collections import deque
 def solution(n, wires):
-    answer = -1
+    answer = n
     graph= [[] for _ in range(n+1)]
     for a,b in wires:
         graph[a].append(b)
@@ -21,13 +21,12 @@ def solution(n, wires):
                     visited[k] =1
                     cnt +=1
         return cnt
-    res = n
-    for f,m in wires:
-        graph[f].remove(m)
-        graph[m].remove(f)
+    for f,g in wires:
+        graph[f].remove(g)
+        graph[g].remove(f)
         
-        res = min(abs(bfs(f)-bfs(m)), res)
+        answer = min(abs(bfs(f)-bfs(g)), answer)
         
-        graph[f].append(m)
-        graph[m].append(f)
-    return res
+        graph[f].append(g)
+        graph[g].append(f)
+    return answer
